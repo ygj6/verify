@@ -1,6 +1,6 @@
 ---
 os:
-#   - linux
+  - linux
   - osx
 sudo: false
 # dist: trusty
@@ -79,13 +79,9 @@ compiler: gcc
 cache:
   directories:
     - /usr/local/Cellar/openssl
-    - /usr/local/opt/openssl
     - /usr/local/Cellar/lcov
-    - /usr/local/opt/lcov
     - /usr/local/Cellar/libtool
-    - /usr/local/opt/libtool
     - /usr/local/Cellar/gcc
-    - /usr/local/opt/gcc
 
 before_install:
   - if [ -n "$COVERALLS" ]; then
@@ -93,11 +89,11 @@ before_install:
     fi
   - export JOBS=1
   - export TIMEOUT=50
-  - test -d /usr/local/opt/openssl/lib  || { rmdir /usr/local/opt/openssl; brew install openssl; }
-  - test -d /usr/local/opt/lcov/bin || { rmdir /usr/local/opt/lcov; brew install lcov; }
-  - test -d /usr/local/opt/libtool/bin    || { rmdir /usr/local/opt/libtool; brew install libtool; }
-  - test -d /usr/local/opt/gcc/bin    || { rmdir /usr/local/opt/gcc; brew install gcc; }
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+      test -d /usr/local/opt/openssl/lib  || { rmdir /usr/local/opt/openssl; brew install openssl; }
+      test -d /usr/local/opt/lcov/bin || { rmdir /usr/local/opt/lcov; brew install lcov; }
+      test -d /usr/local/opt/libtool/bin    || { rmdir /usr/local/opt/libtool; brew install libtool; }
+      test -d /usr/local/opt/gcc/bin    || { rmdir /usr/local/opt/gcc; brew install gcc; }
       export OPENSSL_ROOT_DIR=/usr/local/opt/openssl;
       export JOBS=1;
     fi

@@ -24,7 +24,7 @@ env:
 #     - EVENT_BUILD_METHOD=cmake EVENT_CMAKE_OPTIONS="-DEVENT__DISABLE_THREAD_SUPPORT=ON"
 #     - EVENT_BUILD_METHOD=cmake EVENT_CMAKE_OPTIONS="-DEVENT__DISABLE_DEBUG_MODE=ON"
 #     - EVENT_BUILD_METHOD=cmake EVENT_CMAKE_OPTIONS="-DEVENT__DISABLE_MM_REPLACEMENT=ON"
-#     - EVENT_BUILD_METHOD=autotools EVENT_CONFIGURE_OPTIONS=""
+    - EVENT_BUILD_METHOD=autotools EVENT_CONFIGURE_OPTIONS=""
 #     - EVENT_BUILD_METHOD=autotools EVENT_CONFIGURE_OPTIONS="--disable-openssl"
 #     - EVENT_BUILD_METHOD=autotools EVENT_CONFIGURE_OPTIONS="--disable-thread-support"
 #     - EVENT_BUILD_METHOD=autotools EVENT_CONFIGURE_OPTIONS="--disable-debug-mode"
@@ -90,10 +90,22 @@ before_install:
   - export JOBS=1
   - export TIMEOUT=50
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
-      test -d /usr/local/opt/openssl/lib  || { rmdir /usr/local/opt/openssl; brew install openssl; };
-      test -d /usr/local/opt/lcov/bin || { rmdir /usr/local/opt/lcov; brew install lcov; };
-      test -d /usr/local/opt/libtool/bin    || { rmdir /usr/local/opt/libtool; brew install libtool; };
-      test -d /usr/local/opt/gcc/bin    || { rmdir /usr/local/opt/gcc; brew install gcc; };
+      if [ ! -d /usr/local/opt/openssl/lib ]; then
+        rmdir /usr/local/opt/openssl;
+        brew install openssl;
+      fi
+      if [ ! -d /usr/local/opt/lcov/bin ]; then
+        rmdir /usr/local/opt/lcov;
+        brew install lcov;
+      fi
+      if [ ! -d /usr/local/opt/libtool/bin ]; then
+        rmdir /usr/local/opt/libtool;
+        brew install libtool;
+      fi
+      if [ ! -d /usr/local/opt/gcc/bin ]; then
+        rmdir /usr/local/opt/gcc;
+        brew install gcc;
+      fi
       export OPENSSL_ROOT_DIR=/usr/local/opt/openssl;
       export JOBS=1;
     fi

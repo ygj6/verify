@@ -77,11 +77,12 @@ language: c
 compiler: gcc
 
 cache:
-  directories:
-    - /usr/local/Cellar/openssl
-    - /usr/local/Cellar/lcov
-    - /usr/local/Cellar/libtool
-    - /usr/local/Cellar/gcc
+  - os: osx
+    directories:
+      - /usr/local/Cellar/openssl
+      - /usr/local/Cellar/lcov
+      - /usr/local/Cellar/libtool
+      - /usr/local/Cellar/gcc
 
 before_install:
   - if [ -n "$COVERALLS" ]; then

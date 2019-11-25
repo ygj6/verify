@@ -1,6 +1,6 @@
 ---
 os:
-#   - linux
+  - linux
   - osx
 sudo: false
 # dist: trusty
@@ -24,7 +24,7 @@ env:
 #     - EVENT_BUILD_METHOD=cmake EVENT_CMAKE_OPTIONS="-DEVENT__DISABLE_THREAD_SUPPORT=ON"
 #     - EVENT_BUILD_METHOD=cmake EVENT_CMAKE_OPTIONS="-DEVENT__DISABLE_DEBUG_MODE=ON"
 #     - EVENT_BUILD_METHOD=cmake EVENT_CMAKE_OPTIONS="-DEVENT__DISABLE_MM_REPLACEMENT=ON"
-    - EVENT_BUILD_METHOD=autotools EVENT_CONFIGURE_OPTIONS=""
+#     - EVENT_BUILD_METHOD=autotools EVENT_CONFIGURE_OPTIONS=""
 #     - EVENT_BUILD_METHOD=autotools EVENT_CONFIGURE_OPTIONS="--disable-openssl"
 #     - EVENT_BUILD_METHOD=autotools EVENT_CONFIGURE_OPTIONS="--disable-thread-support"
 #     - EVENT_BUILD_METHOD=autotools EVENT_CONFIGURE_OPTIONS="--disable-debug-mode"

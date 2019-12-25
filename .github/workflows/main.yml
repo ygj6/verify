@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches:
+    - master
+    tags:
+    - '*'
+
+jobs:
+  macos:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        pattern: [0]
+    steps:
+    - uses: actions/checkout@v1
+    - name: install depend
+      run: |
+        brew install openssl
+        brew install lcov
+        brew install libtool
+        brew install gcc
+    - name: build and test
+      env:
+        CC: gcc
+#         CXX: clang++
+      shell: bash
+      run: |
+        pwd;
+        BASE=`pwd`;
+        mkdir ${BASE}/usr;
+        # matrix config
+        if [ ${{ matrix.pattern }} == 0 ]; then
+          EVENT_BUILD_METHOD="cmake"
+          EVENT_CMAKE_OPTIONS=""
+          export OPENSSL_ROOT_DIR="/usr/local/opt/openssl"
+          JOBS=1
+        fi
+        # build and test
+        if [ "$EVENT_BUILD_METHOD" = "autotools" ]; then
+          ./autogen.sh &&
+          ./configure $EVENT_CONFIGURE_OPTIONS &&
+          make &&
+          make -j $JOBS verify;
+        fi
+        if [ "$EVENT_BUILD_METHOD" = "cmake" ]; then
+          pwd
+          export
+          CTEST_PARALLEL_LEVEL=$JOBS
+          CTEST_OUTPUT_ON_FAILURE=1;
+          mkdir build &&
+          cd build &&
+          pwd &&
+          cmake .. $EVENT_CMAKE_OPTIONS;
+          if [ "$TEST_EXPORT" == "STATIC" ]; then
+            cmake --build .;
+            sudo python3 ../test-export/test-export.py static;
+          elif [ "$TEST_EXPORT" == "SHARED" ]; then
+            cmake --build .;
+            sudo python3 ../test-export/test-export.py shared;
+          else
+            cmake --build .;
+            make test;
+          fi
+        fi

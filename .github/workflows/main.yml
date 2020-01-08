@@ -11,12 +11,24 @@ on:
 
 jobs:
   linux:
-    runs-on: ubuntu-18.04
+    runs-on: macos-latest
     strategy:
       matrix:
         pattern: [0, 1]
     steps:
+      - uses: actions/checkout@v1
       - name: install
         run: |
-          sudo apt-get update
-          sudo apt-get install g++-multilib
+          brew install openssl lcov libtool gcc
+      - name: build
+        run: |
+          mkdir build && cd build
+          cmake ..
+          cmake --build .
+          make test
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: buildlog
+          path: build
+

@@ -22,6 +22,7 @@ jobs:
           brew install openssl lcov libtool gcc
       - name: build
         run: |
+          echo =====================${{ GITHUB_WORKSPACE }}
           mkdir build && cd build
           cmake ..
           cmake --build .

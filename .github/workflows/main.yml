@@ -32,7 +32,7 @@ jobs:
         uses: coverallsapp/github-action@v1.0.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ${GITHUB_WORKSPACE}/build/coverage.info.cleaned
+          path-to-lcov: ./build/coverage.info.cleaned
       - uses: actions/upload-artifact@v1
         if: failure()
         with:

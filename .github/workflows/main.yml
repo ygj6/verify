@@ -9,11 +9,12 @@ on:
 
 jobs:
   macos:
-    runs-on: macos-latest
+    runs-on: ubuntu-16.04
     steps:
       - name: find openssl
         run: |
           ls /usr/local/Cellar/openssl*
+          apt list zlib1g-dev libssl-dev build-essential
   linux:
     runs-on: ubuntu-latest
     strategy:

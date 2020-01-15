@@ -128,7 +128,7 @@ int main(int argc, const char * argv[])
     printf("test select...\n");
     test_sleep(sleep_func_select);
     
-    test_evutil_usleep();
+    // test_evutil_usleep();
 
     return 0;
 }

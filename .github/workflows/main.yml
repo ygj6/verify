@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: find openssl
         run: |
-          ls /usr/local/Cellar/openssl*
+          #ls /usr/local/Cellar/openssl*
           apt list zlib1g-dev libssl-dev build-essential
   linux:
     runs-on: ubuntu-latest

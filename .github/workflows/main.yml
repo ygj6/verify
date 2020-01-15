@@ -8,11 +8,19 @@ on:
     - actions
 
 jobs:
+  macos:
+    runs-on: macos-latest
+    steps:
+      - name: find openssl
+        run: |
+          ls /usr/local/Cellar/openssl*
   linux:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         pattern: [0]
+        exclude:
+          - pattern: 0
     steps:
       - uses: actions/checkout@v1
       - name: Install Depends

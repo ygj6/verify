@@ -18,4 +18,5 @@ jobs:
         run: |
           echo "VCPKG_INSTALLATION_ROOT: $env:VCPKG_INSTALLATION_ROOT"
           ls $env:VCPKG_INSTALLATION_ROOT
-          ls $env:VCPKG_INSTALLATION_ROOT\installed\x64-windows\lib
+          openssl version
+          where openssl

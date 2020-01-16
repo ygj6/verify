@@ -14,12 +14,26 @@ jobs:
       matrix:
         os: [windows-2016, windows-2019]
     steps:
-      - name: find openssl on windows
+      - uses: numworks/setup-msys2@v1
+        with: 
+          msystem: MINGW64
+      - name: install dependens
         run: |
-          echo "VCPKG_INSTALLATION_ROOT: $env:VCPKG_INSTALLATION_ROOT"
-          ls $env:VCPKG_INSTALLATION_ROOT
+          msys2do pacman -S --noconfirm mingw-w64-x86_64-gcc mingw-w64-x86_64-pkg-config make autoconf automake msys/libtool pkg-config openssl-devel
+      - name: build and test
+        env:
+          OPENSSL_ROOT_DIR: D:/a/_temp/msys/msys64/usr
+          MPATH: D:/a/_temp/msys/msys64/mingw64/bin;D:/a/_temp/msys/msys64/usr/bin
+          EVENT_TESTS_PARALLEL: 1
+          EVENT_BUILD_PARALLEL: 10 
+        shell: powershell
+        run: |
           openssl version
-          where openssl
-          Get-Command openssl
-          python -version
-          python3 -version
+          ls D:\a\_temp\msys\msys64\usr
+          ls D:\a\_temp\msys\msys64\usr\lib
+          ls D:\a\_temp\msys\msys64\usr\lib\openssl
+          D:\a\_temp\msys\msys64\usr\bin\bash.exe -c "which make"
+          D:\a\_temp\msys\msys64\usr\bin\bash.exe -c "which autoconf"
+          D:\a\_temp\msys\msys64\usr\bin\bash.exe -c "which automake"
+          D:\a\_temp\msys\msys64\usr\bin\bash.exe -c "which pkg-config"
+          D:\a\_temp\msys\msys64\usr\bin\bash.exe -c "which openssl"

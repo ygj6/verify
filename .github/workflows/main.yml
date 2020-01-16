@@ -31,6 +31,7 @@ jobs:
       - name: build and test
         shell: powershell
         run: |
+          $OLDPATH="$env:PATH"
           $env:PATH="D:\a\_temp\msys\msys64\usr\bin;$env:PATH"
           echo PATH:$env:PATH
           openssl version
@@ -42,3 +43,4 @@ jobs:
           bash.exe -c "which automake"
           bash.exe -c "which pkg-config"
           D:\a\_temp\msys\msys64\usr\bin\bash.exe -c "which openssl"
+          $env:PATH="$OLDPATH"

@@ -14,18 +14,21 @@ jobs:
       matrix:
         os: [windows-2016, windows-2019]
     steps:
+      - name: cache mingw
+        id: cache-mingw
+        uses: actions/cache@v1.1.0
+        with:
+          path: D:/a/_temp/msys
+          key: windows-2016-cmake--openssl
       - uses: numworks/setup-msys2@v1
+        if: steps.cache-mingw.outputs.cache-hit != 'true'
         with: 
           msystem: MINGW64
       - name: install dependens
+        if: steps.cache-mingw.outputs.cache-hit != 'true'
         run: |
-          msys2do pacman -S --noconfirm mingw-w64-x86_64-gcc mingw-w64-x86_64-pkg-config make autoconf automake msys/libtool pkg-config openssl-devel
+          msys2do pacman -S --noconfirm mingw-w64-x86_64-gcc make autoconf automake msys/libtool pkg-config openssl-devel
       - name: build and test
-        env:
-          OPENSSL_ROOT_DIR: D:/a/_temp/msys/msys64/usr
-          MPATH: D:/a/_temp/msys/msys64/mingw64/bin;D:/a/_temp/msys/msys64/usr/bin
-          EVENT_TESTS_PARALLEL: 1
-          EVENT_BUILD_PARALLEL: 10 
         shell: powershell
         run: |
           $env:PATH="D:\a\_temp\msys\msys64\usr\bin;$env:PATH"

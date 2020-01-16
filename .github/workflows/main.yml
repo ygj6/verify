@@ -24,7 +24,7 @@ jobs:
         if: steps.cache-mingw.outputs.cache-hit != 'true'
         with: 
           msystem: MINGW64
-      - name: install dependens
+      - name: Install dependens
         if: steps.cache-mingw.outputs.cache-hit != 'true'
         run: |
           msys2do pacman -S --noconfirm mingw-w64-x86_64-gcc make autoconf automake msys/libtool pkg-config openssl-devel

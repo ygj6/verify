@@ -28,12 +28,14 @@ jobs:
           EVENT_BUILD_PARALLEL: 10 
         shell: powershell
         run: |
+          $env:PATH="D:\a\_temp\msys\msys64\usr\bin;$env:PATH"
+          echo PATH:$env:PATH
           openssl version
           ls D:\a\_temp\msys\msys64\usr
           ls D:\a\_temp\msys\msys64\usr\lib
           ls D:\a\_temp\msys\msys64\usr\lib\openssl
-          D:\a\_temp\msys\msys64\usr\bin\bash.exe -c "which make"
-          D:\a\_temp\msys\msys64\usr\bin\bash.exe -c "which autoconf"
-          D:\a\_temp\msys\msys64\usr\bin\bash.exe -c "which automake"
-          D:\a\_temp\msys\msys64\usr\bin\bash.exe -c "which pkg-config"
+          bash.exe -c "which make"
+          bash.exe -c "which autoconf"
+          bash.exe -c "which automake"
+          bash.exe -c "which pkg-config"
           D:\a\_temp\msys\msys64\usr\bin\bash.exe -c "which openssl"

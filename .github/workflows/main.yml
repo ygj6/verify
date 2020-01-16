@@ -20,3 +20,4 @@ jobs:
           ls $env:VCPKG_INSTALLATION_ROOT
           openssl version
           where openssl
+          Get-Command openssl

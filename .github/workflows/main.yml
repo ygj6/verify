@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize]
   push:
     branches:
-    - actions
+      - actions
 
 jobs:
   windows:
@@ -19,43 +19,3 @@ jobs:
           echo "VCPKG_INSTALLATION_ROOT: $env:VCPKG_INSTALLATION_ROOT"
           ls $env:VCPKG_INSTALLATION_ROOT
           ls $env:VCPKG_INSTALLATION_ROOT\installed\x64-windows\lib
-  macos:
-    runs-on: ubuntu-16.04
-    steps:
-      - name: find openssl
-        run: |
-          #ls /usr/local/Cellar/openssl*
-          apt list zlib1g-dev libssl-dev build-essential
-  linux:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        pattern: [0]
-        exclude:
-          - pattern: 0
-    steps:
-      - uses: actions/checkout@v1
-      - name: Install Depends
-        run: |
-          sudo apt install lcov
-      - name: build
-        run: |
-          echo 111 ${GITHUB_WORKSPACE}
-          mkdir build && cd build
-          CFLAGS="-g -O0 --coverage" cmake .. && make && make test
-          lcov --directory . --capture --output-file coverage.info
-          lcov --remove coverage.info '*/test/*' '/usr/*' --output-file $GITHUB_WORKSPACE/build/coverage.info.cleaned
-          echo WORKSPACE-----$GITHUB_WORKSPACE
-          echo HOME-----$HOME
-          echo GITHUB_EVENT_PATH-----$GITHUB_EVENT_PATH
-      - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v1.0.1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ./build/coverage.info.cleaned
-      - uses: actions/upload-artifact@v1
-        if: failure()
-        with:
-          name: buildlog
-          path: $GITHUB_WORKSPACE/build
-

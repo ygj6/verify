@@ -8,6 +8,17 @@ on:
     - actions
 
 jobs:
+  windows:
+    runs-on: ${{ matrix.on }}
+    strategy:
+      matrix:
+        os: [windows-2016, windows-2019]
+    steps:
+      - name: find openssl on windows
+        run: |
+          echo "VCPKG_INSTALLATION_ROOT: $env:VCPKG_INSTALLATION_ROOT"
+          ls $env:VCPKG_INSTALLATION_ROOT
+          ls $env:VCPKG_INSTALLATION_ROOT\installed\x64-windows\lib
   macos:
     runs-on: ubuntu-16.04
     steps:

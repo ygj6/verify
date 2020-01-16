@@ -21,3 +21,5 @@ jobs:
           openssl version
           where openssl
           Get-Command openssl
+          python -version
+          python3 -version

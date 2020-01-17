@@ -31,12 +31,16 @@ jobs:
           msys2do pacman -S --noconfirm mingw-w64-x86_64-gcc make autoconf automake msys/libtool pkg-config openssl-devel
       - name: build
         run: |
-          ls D:\a\_temp\msys
-          ls D:\a\_temp\msys\msys64
-          ls D:\a\_temp\msys\msys64\usr\bin
           $env:PATH="D:\a\_temp\msys;D:\a\_temp\msys\msys64\usr\bin;$env:PATH"
           msys2do pacman -S --noconfirm tree
           find /d/a/_temp/msys -name tree
+          
+          Get-ChildItem -Path D:\a\_temp\msys
+          Get-ChildItem -Path  D:\a\_temp\msys\msys64
+          Get-ChildItem -Path  D:\a\_temp\msys\msys64\usr\bin
+          Get-ChildItem -Path  D:\a\_temp\msys\msys64\mingw64\bin
+          
+          
 
           
 

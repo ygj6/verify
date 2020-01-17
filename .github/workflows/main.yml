@@ -15,17 +15,17 @@ jobs:
         os: [windows-2016, windows-2019]
     steps:
       - name: cache mingw
-        id: cache-mingw
+        id: cache-mingw1
         uses: actions/cache@v1.0.3
         with:
           path: msys
-          key: windows-2016-msys2
+          key: windows-2016-msys1
       - uses: numworks/setup-msys2@v1
-        if: steps.cache-mingw.outputs.cache-hit != 'true'
+        if: steps.cache-mingw1.outputs.cache-hit != 'true'
         with: 
           msystem: MINGW64
       - name: move msys
-        if: steps.cache-mingw.outputs.cache-hit == 'true'
+        if: steps.cache-mingw1.outputs.cache-hit != 'true'
         shell: powershell
         run: |
           Copy-Item D:\a\_temp\msys .\ -recurse

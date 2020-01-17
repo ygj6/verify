@@ -29,3 +29,8 @@ jobs:
         shell: powershell
         run: |
           Copy-Item D:\a\_temp\msys .\ -recurse
+      - name: build
+        run: |
+          $env:PATH="$env:WORKSPACE\msys\usr\bin;$env:PATH"
+          ls .\msys
+          

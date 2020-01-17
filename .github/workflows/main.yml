@@ -27,4 +27,4 @@ jobs:
       - name: move msys
         shell: powershell
         run: |
-          Move-Item D:\a\_temp\msys .\msys
+          Copy-Item D:\a\_temp\msys .\ -recurse

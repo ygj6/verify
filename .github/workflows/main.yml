@@ -25,6 +25,7 @@ jobs:
         with: 
           msystem: MINGW64
       - name: move msys
+        if: steps.cache-mingw.outputs.cache-hit == 'true'
         shell: powershell
         run: |
           Copy-Item D:\a\_temp\msys .\ -recurse

@@ -15,17 +15,17 @@ jobs:
         os: [windows-2016, windows-2019]
     steps:
       - name: cache mingw
-        id: cache-mingw3
+        id: cache-mingw4
         uses: actions/cache@v1.0.3
         with:
           path: D:\a\_temp\msys
-          key: windows-2016-msys3
+          key: windows-2016-msys4
       - uses: numworks/setup-msys2@v1
-        if: steps.cache-mingw3.outputs.cache-hit != 'true'
+        if: steps.cache-mingw4.outputs.cache-hit != 'true'
         with:
           msystem: MINGW64
       - name: Install dependens
-        if: steps.cache-mingw.outputs.cache-hit != 'true'
+        if: steps.cache-mingw4.outputs.cache-hit != 'true'
         run: |
           $env:PATH="D:\a\_temp\msys;$env:PATH"
           msys2do pacman -S --noconfirm mingw-w64-x86_64-gcc make autoconf automake msys/libtool pkg-config openssl-devel
@@ -33,10 +33,5 @@ jobs:
         run: |
           $env:PATH="D:\a\_temp\msys\usr\bin;D:\a\_temp\msys\mingw64\bin;$env:PATH"
           ls D:\a\_temp\msys
-          ls D:\a\_temp\msys\mingw64\bin
-          which make
-          which gcc
-          which openssl
-          which pkg-config
-          which automake
+          
           

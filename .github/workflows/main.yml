@@ -32,9 +32,9 @@ jobs:
       - name: build
         run: |
           ls D:\a\_temp\msys
+          ls D:\a\_temp\msys\msys64
           ls D:\a\_temp\msys\msys64\usr\bin
-          ls D:\a\_temp\msys\usr\bin
-          $env:PATH="D:\a\_temp\msys;D:\a\_temp\msys\usr\bin;D:\a\_temp\msys\msys64\usr\bin;D:\a\_temp\msys\msys64\mingw64\bin;$env:PATH"
+          $env:PATH="D:\a\_temp\msys;D:\a\_temp\msys\msys64\usr\bin;$env:PATH"
           msys2do pacman -S --noconfirm tree
           find /d/a/_temp/msys -name tree
 

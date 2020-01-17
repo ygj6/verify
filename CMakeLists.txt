@@ -5,7 +5,7 @@ project(verify)
 
 set(CMAKE_VERBOSE_MAKEFILE 1)
 
-#find_package(OpenSSL REQUIRED)
+find_package(OpenSSL REQUIRED)
 
 message(STATUS "OpenSSL include: ${OPENSSL_INCLUDE_DIR}")
 message(STATUS "OpenSSL lib: ${OPENSSL_LIBRARIES}")

@@ -16,10 +16,10 @@ jobs:
     steps:
       - name: cache mingw
         id: cache-mingw
-        uses: actions/cache@v1.1.0
+        uses: actions/cache@v1.0.3
         with:
           path: msys
-          key: windows-2016-msys
+          key: windows-2016-msys2
       - uses: numworks/setup-msys2@v1
         if: steps.cache-mingw.outputs.cache-hit != 'true'
         with: 

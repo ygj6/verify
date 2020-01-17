@@ -18,29 +18,13 @@ jobs:
         id: cache-mingw
         uses: actions/cache@v1.1.0
         with:
-          path: D:/a/_temp/msys
-          key: windows-2016-cmake--openssl
+          path: msys
+          key: windows-2016-msys
       - uses: numworks/setup-msys2@v1
         if: steps.cache-mingw.outputs.cache-hit != 'true'
         with: 
           msystem: MINGW64
-      - name: Install dependens
-        if: steps.cache-mingw.outputs.cache-hit != 'true'
-        run: |
-          msys2do pacman -S --noconfirm mingw-w64-x86_64-gcc make autoconf automake msys/libtool pkg-config openssl-devel
-      - name: build and test
+      - name: move msys
         shell: powershell
         run: |
-          $OLDPATH="$env:PATH"
-          $env:PATH="D:\a\_temp\msys\msys64\usr\bin;$env:PATH"
-          echo PATH:$env:PATH
-          openssl version
-          ls D:\a\_temp\msys\msys64\usr
-          ls D:\a\_temp\msys\msys64\usr\lib
-          ls D:\a\_temp\msys\msys64\usr\lib\openssl
-          bash.exe -c "which make"
-          bash.exe -c "which autoconf"
-          bash.exe -c "which automake"
-          bash.exe -c "which pkg-config"
-          D:\a\_temp\msys\msys64\usr\bin\bash.exe -c "which openssl"
-          $env:PATH="$OLDPATH"
+          Move-Item D:\a\_temp\msys .\msys

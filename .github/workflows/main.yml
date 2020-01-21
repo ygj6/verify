@@ -23,5 +23,5 @@ jobs:
           JOBS: ${{ toJson(job) }}
         run: |
           echo [1]:${{github.actor}}
-          echo [2]:$CTX
-          echo [3]:$JOBS
+          echo [2]:"$CTX"
+          echo [3]:"$JOBS"

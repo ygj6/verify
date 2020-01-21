@@ -27,7 +27,7 @@ jobs:
           echo name=====${{github.event.head_commit.author.name}}
           echo email=====${{github.event.head_commit.author.email}}
           echo commit_id=====${{ github.sha }}
-          echo commit_id=====${{ commitid:0:7 }}
+          echo commit_id=====${{ commit_id:0:7 }}
           echo owner.name===${{github.event.repository.owner.name}}
           echo [2]:"${{ github.sha }}"
           echo [3]:"$CTX"

@@ -20,7 +20,8 @@ jobs:
       - name: build
         env: |
           CTX: ${{toJson(github)}}
+          JOBS: ${{ toJson(job) }}
         run: |
           echo [1]:${{github.actor}}
           echo [2]:$CTX
-          echo [3]:${{toJson(github)}}
+          echo [3]:$JOBS

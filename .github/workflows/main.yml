@@ -22,6 +22,7 @@ jobs:
           CTX: ${{toJson(github)}}
           JOBS: ${{ toJson(job) }}
           COMMITID: ${{ github.sha }}
+        shell: bash
         run: |
           echo [1]:${COMMITID:0:7}
           echo name=====${{github.event.head_commit.author.name}}

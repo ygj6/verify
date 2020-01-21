@@ -18,6 +18,9 @@ jobs:
     steps:
 #       - uses: actions/checkout@v2.0.0
       - name: build
+        env: |
+          CTX: ${{toJson(github)}}
         run: |
           echo [1]:${{github.actor}}
-          echo [2]:${{toJson(github)}}
+          echo [2]:$CTX
+          echo [3]:${{toJson(github)}}

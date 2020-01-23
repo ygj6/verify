@@ -14,21 +14,30 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest]
+        os: [windows-2016]
     steps:
 #       - uses: actions/checkout@v2.0.0
+      - name: cache one
+        id: cache-one-id
+        uses: actions/cache@1.0.3
+        with:
+          path: one
+          key: cache-one-key
+      - name: cache two
+        id: cache-two-id
+        uses: actions/cache@1.0.3
+        with:
+          path: two
+          key: cache-two-key
       - name: build
-        env:
-          CTX: ${{toJson(github)}}
-          JOBS: ${{ toJson(job) }}
-          COMMITID: ${{ github.sha }}
-        shell: bash
         run: |
-          echo [1]:${COMMITID:0:7}
-          echo name=====${{github.event.head_commit.author.name}}
-          echo email=====${{github.event.head_commit.author.email}}
-          echo commit_id=====${{ github.sha }}
-          echo commit_id=====${commit_id:0:7}
-          echo owner.name===${{github.event.repository.owner.name}}
-          echo [2]:"${{ github.sha }}"
-          echo [3]:"$CTX"
+          if (-not (Test-Path -Path "./one")) {
+            mkdir one
+            echo abcdefg > one/a.txt
+          }
+          if (-not (Test-Path -Path "./two")) {
+            mkdir two
+            echo 123456 > two/b.txt
+          }
+          echo one---steps.cache-one-id.outputs.cache-hit
+          echo one---steps.cache-two-id.outputs.cache-hit

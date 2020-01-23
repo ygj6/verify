@@ -17,28 +17,9 @@ jobs:
         os: [windows-2016]
     steps:
 #       - uses: actions/checkout@v2.0.0
-      - name: cache one
-        id: cache-one-id
-        uses: actions/cache@v1.0.3
-        with:
-          path: one
-          key: cache-one-key3
-      - name: cache two
-        if: steps.cache-one-id.outputs.cache-hit == 'true'
-        id: cache-two-id
-        uses: actions/cache@v1.0.3
-        with:
-          path: two
-          key: cache-two-key
       - name: build
         run: |
-          if (-not (Test-Path -Path "./one")) {
-            mkdir one
-            echo abcdefg > one/a.txt
+          ls a
+          if ($LastExitCode -ne 0) { 
+            ls 
           }
-          if (-not (Test-Path -Path "./two")) {
-            mkdir two
-            echo 123456 > two/b.txt
-          }
-          echo one---${{ steps.cache-one-id.outputs.cache-hit }}
-          echo one---${{ steps.cache-two-id.outputs.cache-hit }}

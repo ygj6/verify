@@ -29,5 +29,6 @@ jobs:
             }
           } catch {
             echo incatch
-            ls 
+            pwd
+            echo endend
           }

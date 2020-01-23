@@ -20,6 +20,6 @@ jobs:
       - name: build
         run: |
           ls a 2>$null
-          if ($LastExitCode -ne 0) { 
+          if (!$?) { 
             ls 
           }

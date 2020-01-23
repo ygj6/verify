@@ -19,13 +19,13 @@ jobs:
 #       - uses: actions/checkout@v2.0.0
       - name: cache one
         id: cache-one-id
-        uses: actions/cache@1.0.3
+        uses: actions/cache@v1.0.3
         with:
           path: one
           key: cache-one-key
       - name: cache two
         id: cache-two-id
-        uses: actions/cache@1.0.3
+        uses: actions/cache@v1.0.3
         with:
           path: two
           key: cache-two-key

@@ -24,7 +24,10 @@ jobs:
             if (!$?) {
               echo shibail
               ls 
+            } else {
+              echo xxxxxxxxxxxxx
             }
           } catch {
             echo incatch
+            ls 
           }

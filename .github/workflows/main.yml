@@ -39,5 +39,5 @@ jobs:
             mkdir two
             echo 123456 > two/b.txt
           }
-          echo one---steps.cache-one-id.outputs.cache-hit
-          echo one---steps.cache-two-id.outputs.cache-hit
+          echo one---${{ steps.cache-one-id.outputs.cache-hit }}
+          echo one---${{ steps.cache-two-id.outputs.cache-hit }}

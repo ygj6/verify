@@ -22,8 +22,9 @@ jobs:
         uses: actions/cache@v1.0.3
         with:
           path: one
-          key: cache-one-key
+          key: cache-one-key2
       - name: cache two
+        if: steps.cache-one-id.outputs.cache-hit != 'true'
         id: cache-two-id
         uses: actions/cache@v1.0.3
         with:

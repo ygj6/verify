@@ -19,7 +19,12 @@ jobs:
 #       - uses: actions/checkout@v2.0.0
       - name: build
         run: |
-          ls a 2>$null
-          if (!$?) { 
-            ls 
+          try {
+            ls a 2>$null
+            if (!$?) {
+              echo shibail
+              ls 
+            }
+          } catch {
+            echo incatch
           }

@@ -3,9 +3,21 @@ name: CI
 on:
   pull_request:
     types: [opened, synchronize]
+    paths-ignore:
+      - '**.md'
+      - '.mailmap'
+      - 'ChangeLog*'
+      - 'whatsnew*'
+      - 'LICENSE'
   push:
     branches:
-    - master
+      - master
+    paths-ignore:
+      - '**.md'
+      - '.mailmap'
+      - 'ChangeLog*'
+      - 'whatsnew*'
+      - 'LICENSE'
     tags:
     - '*'
 

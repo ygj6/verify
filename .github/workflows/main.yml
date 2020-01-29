@@ -31,4 +31,5 @@ jobs:
 #       - uses: actions/checkout@v2.0.0
       - name: build
         run: |
+          which vcpkg
           vcpkg search gtest

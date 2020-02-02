@@ -40,5 +40,5 @@ jobs:
           mkdir -p ${HOME}/build
           ls ${HOME}/build
           echo abc > ${HOME}/build/a.txt
-          
+          echo home:${HOME}
           

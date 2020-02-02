@@ -34,7 +34,7 @@ jobs:
         uses: actions/cache@v1.1.0
         with:
           path: ~/build
-          key: ${{ runs-on }}-boost-20200131xx
+          key: ${{ jobs.linux.runs-on }}-boost-20200131xx
       - name: build
         run: |
           mkdir -p ${HOME}/build

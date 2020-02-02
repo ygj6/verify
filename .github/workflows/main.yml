@@ -33,7 +33,7 @@ jobs:
         id: cache-boost
         uses: actions/cache@v1.1.0
         with:
-          path: ${HOME}/build
+          path: ${{ HOME }}/build
           key: ${{ runner.os }}-boost-20200131
       - name: build
         run: |

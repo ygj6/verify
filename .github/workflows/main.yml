@@ -34,7 +34,7 @@ jobs:
         uses: actions/cache@v1.1.0
         with:
           path: ~/build
-          key: ${{ runner.os }}-boost-20200131x
+          key: ${{ runner.os }}-boost-20200131xx
       - name: build
         run: |
           mkdir -p ${HOME}/build

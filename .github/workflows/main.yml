@@ -31,5 +31,9 @@ jobs:
 #       - uses: actions/checkout@v2.0.0
       - name: build
         run: |
+          if [ -z "$PATH" ]; then
+            echo has value
+            exit 0
+          fi
           which valgrind
           

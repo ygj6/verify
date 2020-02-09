@@ -30,11 +30,11 @@ jobs:
     steps:
 #       - uses: actions/checkout@v2.0.0
       - name: Install valgrind
-        run: apt install valgrind
+        run: sudo apt install valgrind
 
       - name: build
         run: |
-          if [ -n "$PATH" ]; then
+          if [ -z "$PATH" ]; then
             echo has value
             exit 0
           fi

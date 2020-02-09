@@ -37,8 +37,5 @@ jobs:
           key: ${{ jobs.linux.runs-on }}-boost-20200131xx
       - name: build
         run: |
-          mkdir -p ${HOME}/build
-          ls ${HOME}/build
-          echo abc > ${HOME}/build/a.txt
-          echo home:${HOME}
+          which valgrind
           

@@ -26,17 +26,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18.04]
+        os: [windows-2019, windows-2016]
     steps:
 #       - uses: actions/checkout@v2.0.0
-      - name: Install valgrind
-        run: sudo apt install valgrind
-
       - name: build
         run: |
-          if [ -z "$PATH" ]; then
-            echo has value
-            exit 0
-          fi
-          which valgrind
+          Invoke-WebRequest -Uri "http://www.google.com/" -Method Get -TimeoutSec 10
           

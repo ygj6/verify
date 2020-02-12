@@ -31,6 +31,6 @@ jobs:
 #       - uses: actions/checkout@v2.0.0
       - name: build
         run: |
-          nohup python -m SimpleHTTPServer &
+          python -m SimpleHTTPServer
           curl http://127.0.0.1:8000/
           

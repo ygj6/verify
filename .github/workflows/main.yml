@@ -31,9 +31,9 @@ jobs:
 #       - uses: actions/checkout@v2.0.0
       - name: build
         run: |
-          $env:prog="python.exe -m http.server"
+          $env:prog="python.exe -m http.server 6790"
           Start-Job -ScriptBlock { Invoke-Expression "$env:prog"; }
           Start-Sleep –s 2
-          Invoke-WebRequest -Uri "http://127.0.0.1:8000/" -Method Get -TimeoutSec 10
+          Invoke-WebRequest -Uri "http://127.0.0.1:6790/" -Method Get -TimeoutSec 10
           Receive-Job -Id $(Get-Job).Id
           Remove-Job -Id $(Get-Job).Id -Force

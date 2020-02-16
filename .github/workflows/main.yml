@@ -33,7 +33,10 @@ jobs:
         run: |
           $env:prog="python.exe -m http.server 6790"
           Start-Job -ScriptBlock { Invoke-Expression "$env:prog"; }
-          Start-Sleep –s 2
+          Start-Sleep -s 2
+          echo -------------get-job----------
+          Get-Job
+          echo -------------end-get-job--------
           Invoke-WebRequest -Uri "http://127.0.0.1:6790/" -Method Get -TimeoutSec 10
           Receive-Job -Id $(Get-Job).Id
           Remove-Job -Id $(Get-Job).Id -Force

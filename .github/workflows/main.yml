@@ -26,12 +26,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18.04, ubuntu-16.04]
+        os: [windows-2016, windows-2019]
     steps:
 #       - uses: actions/checkout@v2.0.0
       - name: build
         run: |
-          nohup python -m SimpleHTTPServer 8000 &
-          sleep 5
-          curl http://127.0.0.1:8000/
-          
+          $env:prog="python.exe -m http.server"
+          Start-Job -ScriptBlock { Invoke-Expression "$env:prog"; }
+          Start-Sleep –s 3
+          Invoke-WebRequest -Uri "http://127.0.0.1:8000/" -Method Get -TimeoutSec 10
+          Receive-Job -Id $(Get-Job).Id
+          Remove-Job -Id $(Get-Job).Id -Force

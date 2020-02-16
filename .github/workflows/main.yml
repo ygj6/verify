@@ -32,5 +32,6 @@ jobs:
       - name: build
         run: |
           nohup python -m SimpleHTTPServer 8000 &
+          sleep 5
           curl http://127.0.0.1:8000/
           

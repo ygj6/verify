@@ -41,7 +41,7 @@ jobs:
           Invoke-WebRequest -Uri "http://127.0.0.1:6790/" -Method Get -TimeoutSec 10
           Receive-Job -Id $(Get-Job).Id
           Remove-Job -Id $(Get-Job).Id -Force
-  linux:
+  win:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:

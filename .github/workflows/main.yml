@@ -28,29 +28,13 @@ jobs:
       matrix:
         os: [windows-2016]
     steps:
-      - name: build
-        run: |
-          Invoke-WebRequest -Uri https://github.com/curl/curl/archive/curl-7_61_0.zip -OutFile curl-curl-7_61_0.zip
-          7z x curl-curl-7_61_0.zip
-          cd curl-curl-7_61_0
-          .\buildconf.bat
-          cd winbuild
-          ls
-          cmd /v:on /C '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & nmake -help & nmake /f makefile.vc MODE=dll VC=15 ENABLE_IDN=no DEBUG=no MACHINE=x64'
-         # cd ..
-  win:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-2019]
-    steps:
       - name: Cache curl
         id: cache-curl
-        uses: actions/cache@v1.1.0
+        uses: actions/cache@v1.1.2
         with:
-          path: ~/libcurl-vc16-x64-release-dll-ipv6-sspi-winssl
+          path: ~/libcurl-vc15-x64-release-dll-ipv6-sspi-winssl
           key: ${{ matrix.os }}-curl-7_61_0
-      - name: install curl
+      - name: Install curl
         shell: powershell
         if: steps.cache-curl.outputs.cache-hit != 'true'
         run: |
@@ -60,11 +44,14 @@ jobs:
           .\buildconf.bat
           cd winbuild
           ls
-          cmd /v:on /C '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & nmake -help & nmake /f makefile.vc MODE=dll VC=16 ENABLE_IDN=no DEBUG=no MACHINE=x64'
-         # cd ..
-         # ls builds
-         # mv builds\libcurl-vc16-x64-release-dll-ipv6-sspi-winssl ~/
-      - name: build
-        run: |
-          
-          
+          cmd /v:on /C '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & nmake /f makefile.vc MODE=dll VC=15 ENABLE_IDN=no DEBUG=no MACHINE=x64'
+          cd ..
+          mv builds\libcurl-vc15-x64-release-dll-ipv6-sspi-winssl ~/
+  win:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-2019]
+    steps:
+      - name: Cache curl
+        run: echo 2019

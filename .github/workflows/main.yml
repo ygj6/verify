@@ -37,7 +37,26 @@ jobs:
       matrix:
         os: [windows-2019]
     steps:
+      - name: Cache curl
+        id: cache-curl
+        uses: actions/cache@v1.1.0
+        with:
+          path: ~/libcurl-vc16-x64-release-dll-ipv6-sspi-winssl
+          key: ${{ matrix.os }}-curl-7_61_0
+      - name: install curl
+        shell: powershell
+        if: steps.cache-curl.outputs.cache-hit != 'true'
+        run: |
+          Invoke-WebRequest -Uri https://github.com/curl/curl/archive/curl-7_61_0.zip -OutFile curl-curl-7_61_0.zip
+          7z x curl-curl-7_61_0.zip
+          cd curl-curl-7_61_0
+          .\buildconf.bat
+          cd winbuild
+          cmd /v:on /C '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64 & nmake /f makefile.vc MODE=dll VC=16 ENABLE_IDN=no DEBUG=no MACHINE=x64'
+          cd ..
+          ls builds
+          mv builds\libcurl-vc16-x64-release-dll-ipv6-sspi-winssl ~/
       - name: build
         run: |
-          cmd /v:on /C '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64 & nmake -help'
+          
           

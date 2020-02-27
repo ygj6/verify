@@ -31,16 +31,7 @@ jobs:
 #       - uses: actions/checkout@v2.0.0
       - name: build
         run: |
-          netsh advfirewall firewall add rule name="Open-port-6790" dir=in action=allow protocol=TCP localport=6790
-          $env:prog="python.exe -m http.server 6790"
-          Start-Job -ScriptBlock { Invoke-Expression "$env:prog"; }
-          Start-Sleep -s 2
-          echo -------------get-job----------
-          Get-Job
-          echo -------------end-get-job--------
-          Invoke-WebRequest -Uri "http://127.0.0.1:6790/" -Method Get -TimeoutSec 10
-          Receive-Job -Id $(Get-Job).Id
-          Remove-Job -Id $(Get-Job).Id -Force
+          where nmake
   win:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -48,15 +39,15 @@ jobs:
         os: [windows-2019]
     steps:
 #       - uses: actions/checkout@v2.0.0
+      - name: install curl
+        shell: powershell
+        run: |
+          Invoke-WebRequest -Uri https://github.com/curl/curl/archive/curl-7_61_0.zip -OutFile curl-curl-7_61_0.zip
+          7z x curl-curl-7_61_0.zip
+          cd curl-curl-7_61_0
+          .\buildconf.bat
+          cd winbuild
+          # nmake /f makefile.vc MODE=dll VC=16 ENABLE_IDN=no DEBUG=no MACHINE=x64
       - name: build
         run: |
-          New-NetFirewallRule -DisplayName 'Open Port 6790' -Profile @('Domain', 'Private') -Direction Inbound -Action Allow -Protocol TCP -LocalPort 6790
-          $env:prog="python.exe -m http.server 6790"
-          Start-Job -ScriptBlock { Invoke-Expression "$env:prog"; }
-          Start-Sleep -s 2
-          echo -------------get-job----------
-          Get-Job
-          echo -------------end-get-job--------
-          Invoke-WebRequest -Uri "http://127.0.0.1:6790/" -Method Get -TimeoutSec 10
-          Receive-Job -Id $(Get-Job).Id
-          Remove-Job -Id $(Get-Job).Id -Force
+          where nmake

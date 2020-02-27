@@ -40,15 +40,22 @@ jobs:
         os: [windows-2019]
     steps:
 #       - uses: actions/checkout@v2.0.0
-      - name: install curl
+      - name: download curl
         shell: powershell
         run: |
           Invoke-WebRequest -Uri https://github.com/curl/curl/archive/curl-7_61_0.zip -OutFile curl-curl-7_61_0.zip
           7z x curl-curl-7_61_0.zip
-          cd curl-curl-7_61_0
-          .\buildconf.bat
-          cd winbuild
-          nmake /f makefile.vc MODE=dll VC=16 ENABLE_IDN=no DEBUG=no MACHINE=x64
+      - name: build curl
+        env:
+          home: ${{ HOME }}
+        run: |
+          echo %home%
+        #  cd curl-curl-7_61_0
+        #  .\buildconf.bat
+        #  cd winbuild
+        #  call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+        #  nmake /f makefile.vc MODE=dll VC=16 ENABLE_IDN=no DEBUG=no MACHINE=x64
+
       - name: build
         run: |
           where nmake

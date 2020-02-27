@@ -33,7 +33,7 @@ jobs:
         uses: actions/cache@v1.0.3
         with:
           path: ~/libcurl-vc15-x64-release-dll-ipv6-sspi-winssl
-          key: ${{ matrix.os }}-curl-7_61_0
+          key: libcurl-vc15-x64-release-dll-ipv6-sspi-winssl
       - name: Install curl
         shell: powershell
         if: steps.cache-curl.outputs.cache-hit != 'true'

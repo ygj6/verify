@@ -52,7 +52,8 @@ jobs:
           cd curl-curl-7_61_0
           .\buildconf.bat
           cd winbuild
-          cmd /v:on /C '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & nmake /f makefile.vc MODE=dll VC=16 ENABLE_IDN=no nmake /f makefile.vc MODE=dll VC=16 ENABLE_SSL=no DEBUG=no MACHINE=x64'
+          ls
+          cmd /v:on /C '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & nmake -help & nmake /f makefile.vc'
          # cd ..
          # ls builds
          # mv builds\libcurl-vc16-x64-release-dll-ipv6-sspi-winssl ~/

@@ -47,6 +47,9 @@ jobs:
           cmd /v:on /C '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & nmake /f makefile.vc MODE=dll VC=15 ENABLE_IDN=no DEBUG=no MACHINE=x64'
           cd ..
           mv builds\libcurl-vc15-x64-release-dll-ipv6-sspi-winssl ~/
+      - name: Build
+        run: |
+          ls ~/libcurl-vc15-x64-release-dll-ipv6-sspi-winssl
   win:
     runs-on: ${{ matrix.os }}
     strategy:

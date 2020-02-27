@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: Cache curl
         id: cache-curl
-        uses: actions/cache@v1.1.2
+        uses: actions/cache@v1.0.3
         with:
           path: ~/libcurl-vc15-x64-release-dll-ipv6-sspi-winssl
           key: ${{ matrix.os }}-curl-7_61_0

@@ -32,6 +32,7 @@ jobs:
       - name: build
         run: |
           where nmake
+          nmake -help
   win:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -47,7 +48,7 @@ jobs:
           cd curl-curl-7_61_0
           .\buildconf.bat
           cd winbuild
-          # nmake /f makefile.vc MODE=dll VC=16 ENABLE_IDN=no DEBUG=no MACHINE=x64
+          nmake /f makefile.vc MODE=dll VC=16 ENABLE_IDN=no DEBUG=no MACHINE=x64
       - name: build
         run: |
           where nmake

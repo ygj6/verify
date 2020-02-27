@@ -30,8 +30,7 @@ jobs:
     steps:
       - name: build
         run: |
-          & "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
-          nmake -help
+          "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64 & nmake -help
   win:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -40,5 +39,4 @@ jobs:
     steps:
       - name: build
         run: |
-          & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
-          nmake -help
+          "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64 & nmake -help

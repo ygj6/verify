@@ -1,4 +1,4 @@
 # verify
 
-verify build and CI problems in here.
+verify build and CI problems here.
 

@@ -22,39 +22,40 @@ on:
     - '*'
 
 jobs:
-  linux:
-    runs-on: ${{ matrix.os }}
+  autotools:
+    runs-on: windows-2016
     strategy:
+      fail-fast: false
       matrix:
-        os: [windows-2016]
+        EVENT_MATRIX:
+          - none
+
     steps:
-      - name: Cache curl
-        id: cache-curl
+      - uses: actions/checkout@v2.0.0
+
+      - name: Cache MinGW
+        id: cache-mingw-0321
         uses: actions/cache@v1.0.3
         with:
-          path: ~/libcurl-vc15-x64-release-dll-ipv6-sspi-winssl
-          key: libcurl-vc15-x64-release-dll-ipv6-sspi-winssl
-      - name: Install curl
+          path: D:\a\_temp\msys
+          key: windows-mingw-0321
+
+      - name: Cache Build
+        uses: actions/cache@v1.0.3
+        with:
+          path: build
+          key: mingw-${{ matrix.EVENT_MATRIX }}
+
+      - uses: numworks/setup-msys2@v1
+        if: steps.cache-mingw-0321.outputs.cache-hit != 'true'
+        with:
+          msystem: MINGW64
+
+      - name: Install Dependes
+        if: steps.cache-mingw-0321.outputs.cache-hit != 'true'
+        run: |
+          msys2do pacman -S --noconfirm mingw-w64-x86_64-gcc make autoconf automake libtool mingw-w64-x86_64-openssl
+      - name: Build And Test
         shell: powershell
-        if: steps.cache-curl.outputs.cache-hit != 'true'
         run: |
-          Invoke-WebRequest -Uri https://github.com/curl/curl/archive/curl-7_61_0.zip -OutFile curl-curl-7_61_0.zip
-          7z x curl-curl-7_61_0.zip
-          cd curl-curl-7_61_0
-          .\buildconf.bat
-          cd winbuild
-          ls
-          cmd /v:on /C '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & nmake /f makefile.vc MODE=dll VC=15 ENABLE_IDN=no DEBUG=no MACHINE=x64'
-          cd ..
-          mv builds\libcurl-vc15-x64-release-dll-ipv6-sspi-winssl ~/
-      - name: Build
-        run: |
-          ls ~/libcurl-vc15-x64-release-dll-ipv6-sspi-winssl
-  win:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-2019]
-    steps:
-      - name: Cache curl
-        run: echo 2019
+          ls D:\a\_temp\msys\msys64\

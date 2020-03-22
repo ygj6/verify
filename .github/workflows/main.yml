@@ -23,7 +23,7 @@ on:
 
 jobs:
   autotools:
-    runs-on: windows-2016
+    runs-on: windows-2019
     strategy:
       fail-fast: false
       matrix:
@@ -34,25 +34,25 @@ jobs:
       - uses: actions/checkout@v2.0.0
 
       - name: Cache MinGW
-        id: cache-mingw-0321
+        id: cache-mingw-0322
         uses: actions/cache@v1.0.3
         with:
           path: D:\a\_temp\msys
-          key: windows-mingw-0321
+          key: windows-mingw-0322
 
       - name: Cache Build
-        uses: actions/cache@v1.0.3
+        uses: actions/cache@v1.1.2
         with:
           path: build
           key: mingw-${{ matrix.EVENT_MATRIX }}
 
       - uses: numworks/setup-msys2@v1
-        if: steps.cache-mingw-0321.outputs.cache-hit != 'true'
+        if: steps.cache-mingw-0322.outputs.cache-hit != 'true'
         with:
           msystem: MINGW64
 
       - name: Install Dependes
-        if: steps.cache-mingw-0321.outputs.cache-hit != 'true'
+        if: steps.cache-mingw-0322.outputs.cache-hit != 'true'
         run: |
           msys2do pacman -S --noconfirm mingw-w64-x86_64-gcc make autoconf automake libtool mingw-w64-x86_64-openssl
       - name: Build And Test

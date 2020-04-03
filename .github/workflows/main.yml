@@ -15,12 +15,6 @@ jobs:
         os: [ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2.0.0
-      - name: build
+      - name: install g++-multilib
         run: |
-          git branch
-          git checkout gh-pages
-          git rm -r *
-          touch index.html
-          echo "mssage from github actions" > index.html
-          git commit -am "update"
-          git push
+          sudo apt-get install g++-multilib

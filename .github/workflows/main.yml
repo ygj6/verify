@@ -42,7 +42,7 @@ jobs:
         if: steps.cache-boost.outputs.cache-hit != 'true'
         shell: powershell
         run: |
-          vcpkg install openssl:x64-windows
+          vcpkg install zlib:x64-windows
       - name: build
         run: |
           echo [1]$VCPKG_INSTALLATION_ROOT

@@ -42,6 +42,8 @@ jobs:
           vcpkg install openssl:x64-windows
       - name: build
         run: |
-          ls ${{ VCPKG_INSTALLATION_ROOT }}\installed\lib
+          echo [1]$VCPKG_INSTALLATION_ROOT
+          echo [2]$env:VCPKG_INSTALLATION_ROOT
+          ls $VCPKG_INSTALLATION_ROOT\installed\lib
           
           

@@ -45,6 +45,7 @@ jobs:
           vcpkg install zlib:x64-windows
       - name: build
         run: |
+          echo [0]$XX
           echo [1]$VCPKG_INSTALLATION_ROOT
           echo [2]$env:VCPKG_INSTALLATION_ROOT
           ls $env:VCPKG_INSTALLATION_ROOT\installed\x64-windows\lib

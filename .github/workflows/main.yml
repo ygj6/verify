@@ -33,8 +33,8 @@ jobs:
         id: cache-boost
         uses: actions/cache@v2
         with:
-          path: $HOME/build
-          key: ${{ runner.os }}-boost-v1
+          path: ${{ VCPKG_INSTALLATION_ROOT }}/installed
+          key: ${{ runner.os }}-boost-v2
       - name: install
         if: steps.cache-boost.outputs.cache-hit != 'true'
         shell: powershell

@@ -26,19 +26,22 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-18.04]
+        os: [windows-2016]
     steps:
-#       - uses: actions/checkout@v2.0.0
+      - uses: actions/checkout@v2.0.0
       - name: Cache boost
         id: cache-boost
-        uses: actions/cache@v1.1.0
+        uses: actions/cache@v2
         with:
           path: $HOME/build
-          key: ${{ runner.os }}-boost-20200131
+          key: ${{ runner.os }}-boost-v1
+      - name: install
+        if: steps.cache-boost.outputs.cache-hit != 'true'
+        shell: powershell
+        run: |
+          vcpkg install openssl:x64-windows
       - name: build
         run: |
-          mkdir -p ${HOME}/build
-          ls ${HOME}/build
-          echo abc > ${HOME}/build/a.txt
+          ls ${{ VCPKG_INSTALLATION_ROOT }}\installed\lib
           
           

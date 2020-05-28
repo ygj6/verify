@@ -36,7 +36,7 @@ jobs:
         id: cache-boost
         uses: actions/cache@v2
         with:
-          path: C\:\\vcpkg\\installed
+          path: ~/../../vcpkg/installed
           key: ${{ runner.os }}-boost-v7
       - name: install
         if: steps.cache-boost.outputs.cache-hit != 'true'

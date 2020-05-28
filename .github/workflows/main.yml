@@ -32,11 +32,11 @@ jobs:
  #      - uses: actions/checkout@v2.0.0
       - name: Cache boost
         env:
-          XX: ${{ VCPKG_INSTALLATION_ROOT }}
+          XX: ${VCPKG_INSTALLATION_ROOT}
         id: cache-boost
         uses: actions/cache@v2
         with:
-          path: $XX/installed
+          path: $VCPKG_INSTALLATION_ROOT/installed
           key: ${{ runner.os }}-boost-v4
       - name: install
         if: steps.cache-boost.outputs.cache-hit != 'true'

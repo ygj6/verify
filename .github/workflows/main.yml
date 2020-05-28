@@ -34,9 +34,9 @@ jobs:
         env:
           XX: ${VCPKG_INSTALLATION_ROOT}
         id: cache-boost
-        uses: actions/cache@v2
+        uses: actions/cache@v1.0.3
         with:
-          path: ~/../../vcpkg/installed
+          path: C:/vcpkg/installed
           key: ${{ runner.os }}-boost-v8
       - name: install
         if: steps.cache-boost.outputs.cache-hit != 'true'

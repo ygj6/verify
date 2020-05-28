@@ -14,8 +14,13 @@ jobs:
       matrix:
         os: [ubuntu-18.04]
     steps:
-      - uses: actions/checkout@v2.0.0
-      - name: install g++-multilib
+    #  - uses: actions/checkout@v2.0.0
+      - name: build
         run: |
-          sudo apt-get update
-          sudo apt-get install g++-multilib
+          pwd
+          ls a
+          if [ $? != 0 ]; then
+            echo fail
+          else
+            echo success
+          fi

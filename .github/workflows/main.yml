@@ -18,7 +18,7 @@ jobs:
       - name: build
         run: |
           pwd
-          ls a || ( touch b && ls b)
+          ls a || ( rm -rf * && ls )
           if [ $? != 0 ]; then
             echo fail
           else

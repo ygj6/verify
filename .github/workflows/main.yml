@@ -29,25 +29,8 @@ jobs:
         os: [windows-2016]
 
     steps:
- #      - uses: actions/checkout@v2.0.0
-      - name: Cache boost
-        env:
-          XX: ${VCPKG_INSTALLATION_ROOT}
-        id: cache-boost
-        uses: actions/cache@v1.0.3
-        with:
-          path: C:/vcpkg/installed
-          key: ${{ runner.os }}-boost-v8
-      - name: install
-        if: steps.cache-boost.outputs.cache-hit != 'true'
+      - name: build
         shell: powershell
         run: |
-          vcpkg install zlib:x64-windows
-      - name: build
-        run: |
-          echo [0]$XX
-          echo [1]$VCPKG_INSTALLATION_ROOT
-          echo [2]$env:VCPKG_INSTALLATION_ROOT
-          ls $env:VCPKG_INSTALLATION_ROOT\installed\x64-windows\lib
-          
-          
+          echo BOOST_ROOT_1_69_0=${{ BOOST_ROOT_1_69_0 }}
+          echo BOOST_ROOT_1_72_0=${{ BOOST_ROOT_1_72_0 }}

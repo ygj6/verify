@@ -32,5 +32,5 @@ jobs:
       - name: build
         shell: powershell
         run: |
-          echo BOOST_ROOT_1_69_0=${{ BOOST_ROOT_1_69_0 }}
-          echo BOOST_ROOT_1_72_0=${{ BOOST_ROOT_1_72_0 }}
+          echo BOOST_ROOT_1_69_0=$env:BOOST_ROOT_1_69_0
+          echo BOOST_ROOT_1_72_0=$env:BOOST_ROOT_1_72_0

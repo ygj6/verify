@@ -5,17 +5,19 @@ project(verify)
 
 set(CMAKE_VERBOSE_MAKEFILE 1)
 
-find_package(OpenSSL REQUIRED)
+FIND_PACKAGE (Boost REQUIRED COMPONENTS chrono context system timer)
 
-message(STATUS "OpenSSL include: ${OPENSSL_INCLUDE_DIR}")
-message(STATUS "OpenSSL lib: ${OPENSSL_LIBRARIES}")
+# find_package(OpenSSL REQUIRED)
 
-include_directories(${OPENSSL_INCLUDE_DIR})
+# message(STATUS "OpenSSL include: ${OPENSSL_INCLUDE_DIR}")
+# message(STATUS "OpenSSL lib: ${OPENSSL_LIBRARIES}")
 
-add_executable(main main.c)
+# include_directories(${OPENSSL_INCLUDE_DIR})
 
-#target_link_libraries(main ${OPENSSL_LIBRARIES})
+# add_executable(main main.c)
 
-enable_testing()
-add_test(main main)
+# #target_link_libraries(main ${OPENSSL_LIBRARIES})
+
+# enable_testing()
+# add_test(main main)
 

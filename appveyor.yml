@@ -9,25 +9,25 @@ image:
 - Visual Studio 2015
 environment:
   global:
-    BOOST_ROOT1: 'C:\Libraries\boost_1_67_0'
-    BOOST_INCLUDEDIR1: 'C:\Libraries\boost_1_67_0\boost'
-    BOOST_LIBRARYDIR1: 'C:\Libraries\boost_1_67_0\lib32-msvc-12.0'
+    BOOST_ROOT1: 'C:\Libraries\boost_1_60_0'
+    BOOST_INCLUDEDIR1: 'C:\Libraries\boost_1_60_0\boost'
+    BOOST_LIBRARYDIR1: 'C:\Libraries\boost_1_60_0\lib32-msvc-12.0'
   matrix:
     - cpp11: -DMSGPACK_CXX11=OFF
       msvc: '"Visual Studio 10 2010"'
-      BOOST_ROOT: 'C:\Libraries\boost'
-      BOOST_INCLUDEDIR: 'C:\Libraries\boost\boost'
-      BOOST_LIBRARYDIR: 'C:\Libraries\boost\lib32-msvc-10.0'
+      BOOST_ROOT: 'C:\Libraries\boost_1_62_0'
+      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_62_0\boost'
+      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_62_0\lib32-msvc-10.0'
     - cpp11: -DMSGPACK_CXX11=OFF
       msvc: '"Visual Studio 11 2012"'
-      BOOST_ROOT: 'C:\Libraries\boost'
-      BOOST_INCLUDEDIR: 'C:\Libraries\boost\boost'
-      BOOST_LIBRARYDIR: 'C:\Libraries\boost\lib32-msvc-11.0'
+      BOOST_ROOT: 'C:\Libraries\boost_1_63_0'
+      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_63_0\boost'
+      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_63_0\lib32-msvc-11.0'
     - cpp11: -DMSGPACK_CXX11=OFF
       msvc: '"Visual Studio 12 2013"'
-      BOOST_ROOT: 'C:\Libraries\boost_1_58_0'
-      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_58_0\boost'
-      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_58_0\lib32-msvc-12.0'
+      BOOST_ROOT: 'C:\Libraries\boost_1_65_0'
+      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_65_0\boost'
+      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_65_0\lib32-msvc-12.0'
     - cpp11: -DMSGPACK_CXX11=ON
       msvc: '"Visual Studio 14 2015"'
       BOOST_ROOT: 'C:\Libraries\boost_1_67_0'
@@ -43,6 +43,9 @@ build_script:
   - cd build
   - cmake -version
   - ls C:\Libraries
-  - ls C:\Libraries\boost
-  - ls '%BOOST_LIBRARYDIR%'
+  - ls C:\Libraries\boost_1_60_0
+  - ls C:\Libraries\boost_1_62_0
+  - ls C:\Libraries\boost_1_63_0
+  - ls C:\Libraries\boost_1_65_0
+  - ls C:\Libraries\boost_1_66_0
   - cmake -G %msvc% -DCMAKE_CXX_FLAGS='"/D_VARIADIC_MAX=10 /EHsc"' -DBOOST_ROOT="%BOOST_ROOT%" -DBOOST_INCLUDEDIR="%BOOST_INCLUDEDIR%" -DBOOST_LIBRARYDIR="%BOOST_LIBRARYDIR%" ..

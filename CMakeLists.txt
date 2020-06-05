@@ -5,7 +5,8 @@ project(verify)
 
 set(CMAKE_VERBOSE_MAKEFILE 1)
 
-FIND_PACKAGE (Boost REQUIRED COMPONENTS chrono context system timer)
+# FIND_PACKAGE (Boost REQUIRED COMPONENTS chrono context system timer)
+FIND_PACKAGE (Boost REQUIRED)
 
 # find_package(OpenSSL REQUIRED)
 

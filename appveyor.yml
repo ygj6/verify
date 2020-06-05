@@ -25,9 +25,9 @@ environment:
       BOOST_LIBRARYDIR: 'C:\Libraries\boost\lib32-msvc-11.0'
     - cpp11: -DMSGPACK_CXX11=OFF
       msvc: '"Visual Studio 12 2013"'
-      BOOST_ROOT: 'C:\Libraries\boost'
-      BOOST_INCLUDEDIR: 'C:\Libraries\boost\boost'
-      BOOST_LIBRARYDIR: 'C:\Libraries\boost\lib32-msvc-12.0'
+      BOOST_ROOT: 'C:\Libraries\boost_1_58_0'
+      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_58_0\boost'
+      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_58_0\lib32-msvc-12.0'
     - cpp11: -DMSGPACK_CXX11=ON
       msvc: '"Visual Studio 14 2015"'
       BOOST_ROOT: 'C:\Libraries\boost_1_67_0'
@@ -42,6 +42,7 @@ build_script:
   - md build
   - cd build
   - cmake -version
+  - ls C:\Libraries
   - ls C:\Libraries\boost
   - ls '%BOOST_LIBRARYDIR%'
   - cmake -G %msvc% -DCMAKE_CXX_FLAGS='"/D_VARIADIC_MAX=10 /EHsc"' -DBOOST_ROOT="%BOOST_ROOT%" -DBOOST_INCLUDEDIR="%BOOST_INCLUDEDIR%" -DBOOST_LIBRARYDIR="%BOOST_LIBRARYDIR%" ..

@@ -9,7 +9,9 @@ image:
 - Visual Studio 2015
 environment:
   global:
-    BOOST_ROOT: C:\Libraries\boost_1_67_0
+    BOOST_ROOT: 'C:\Libraries\boost_1_67_0'
+    BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_67_0\boost'
+    BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_67_0\lib64-msvc-12.0'
   matrix:
     - cpp11: -DMSGPACK_CXX11=OFF
       msvc: '"Visual Studio 10 2010"'
@@ -25,4 +27,4 @@ build_script:
   - md build
   - cd build
   - cmake -version
-  - cmake -G %msvc% -A x64 %cpp11% -DCMAKE_CXX_FLAGS='"/D_VARIADIC_MAX=10 /EHsc"' ..
+  - cmake -G %msvc% -A x64 %cpp11% -DCMAKE_CXX_FLAGS='"/D_VARIADIC_MAX=10 /EHsc"' -DBOOST_ROOT="%BOOST_ROOT%" -DBOOST_INCLUDEDIR="%BOOST_INCLUDEDIR%" -DBOOST_LIBRARYDIR="%BOOST_LIBRARYDIR%" ..

@@ -6,14 +6,15 @@ branches:
     - master
 
 image:
-- Visual Studio 2015
+  - Visual Studio 2013
+  - Visual Studio 2015
 environment:
   global:
     BOOST_ROOT1: 'C:\Libraries\boost_1_60_0'
     BOOST_INCLUDEDIR1: 'C:\Libraries\boost_1_60_0\boost'
     BOOST_LIBRARYDIR1: 'C:\Libraries\boost_1_60_0\lib32-msvc-12.0'
   matrix:
-    - cpp11: -DMSGPACK_CXX11=OFF
+    - cpp11: Visual Studio 2013
       msvc: '"Visual Studio 10 2010"'
       BOOST_ROOT: 'C:\Libraries\boost_1_67_0'
       BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_67_0\boost'

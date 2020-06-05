@@ -16,14 +16,14 @@ environment:
   matrix:
     - cpp11: Visual Studio 2013
       msvc: '"Visual Studio 10 2010"'
-      BOOST_ROOT: 'C:\Libraries\boost_1_67_0'
-      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_67_0\boost'
-      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_67_0\lib32-msvc-14.0'
+      BOOST_ROOT: 'C:\Libraries\boost_1_62_0'
+      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_62_0\boost'
+      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_62_0\lib32-msvc-14.0'
     - cpp11: -DMSGPACK_CXX11=OFF
       msvc: '"Visual Studio 11 2012"'
-      BOOST_ROOT: 'C:\Libraries\boost_1_67_0'
-      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_67_0\boost'
-      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_67_0\lib32-msvc-14.0'
+      BOOST_ROOT: 'C:\Libraries\boost_1_63_0'
+      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_63_0\boost'
+      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_63_0\lib32-msvc-14.0'
     - cpp11: -DMSGPACK_CXX11=OFF
       msvc: '"Visual Studio 12 2013"'
       BOOST_ROOT: 'C:\Libraries\boost_1_67_0'
@@ -47,6 +47,4 @@ build_script:
   - ls C:\Libraries\boost_1_60_0
   - ls C:\Libraries\boost_1_62_0
   - ls C:\Libraries\boost_1_63_0
-  - ls C:\Libraries\boost_1_65_1
-  - ls C:\Libraries\boost_1_66_0
   - cmake -G %msvc% -DCMAKE_CXX_FLAGS='"/D_VARIADIC_MAX=10 /EHsc"' -DBOOST_ROOT="%BOOST_ROOT%" -DBOOST_INCLUDEDIR="%BOOST_INCLUDEDIR%" -DBOOST_LIBRARYDIR="%BOOST_LIBRARYDIR%" ..

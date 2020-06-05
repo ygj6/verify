@@ -25,4 +25,4 @@ build_script:
   - md build
   - cd build
   - cmake -version
-  - cmake -G %msvc% %cpp11% -DCMAKE_CXX_FLAGS='"/D_VARIADIC_MAX=10 /EHsc"' ..
+  - cmake -G %msvc% -A x64 %cpp11% -DCMAKE_CXX_FLAGS='"/D_VARIADIC_MAX=10 /EHsc"' ..

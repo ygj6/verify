@@ -6,10 +6,11 @@ project(verify)
 set(CMAKE_VERBOSE_MAKEFILE 1)
 
 FIND_PACKAGE (Boost REQUIRED)
-message("BOOST_INCLUDES = ${BOOST_INCLUDES}")
 message("Boost_INCLUDE_DIRS = ${Boost_INCLUDE_DIRS}")
-message("BOOST_LIBRARIES = ${BOOST_LIBRARIES}")
+message("Boost_LIBRARIES = ${Boost_LIBRARIES}")
 FIND_PACKAGE (Boost REQUIRED COMPONENTS chrono context system timer)
+message("Boost_INCLUDE_DIRS2 = ${Boost_INCLUDE_DIRS}")
+message("Boost_LIBRARIES2 = ${Boost_LIBRARIES}")
 
 # find_package(OpenSSL REQUIRED)
 

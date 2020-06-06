@@ -33,6 +33,11 @@ build_script:
       cmake -version
       echo msvc=$msvc
       echo envmsvc=$env:msvc
-      if ($msvc -eq "Visual Studio 12 2013") { echo "yesssssss" } else { echo "noooooooo" }
+      if ($env:msvc -eq "Visual Studio 12 2013") {
+        echo "yesssssss"
+      }
+      else {
+        echo "noooooooo"
+      }
  
   

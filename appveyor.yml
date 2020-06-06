@@ -30,6 +30,7 @@ build_script:
   - md build
   - cd build
   - cmake -version
+  - if (%msvc% -eq "Visual Studio 12 2013") { echo "yesssssss" } else { echo "noooooooo" }
   - ls C:\Libraries
   - ls %BOOST_ROOT%
   - cd %BOOST_ROOT%

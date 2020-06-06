@@ -6,36 +6,33 @@ branches:
     - master
 
 image:
-  - Visual Studio 2012
+  - Visual Studio 2015
 environment:
   global:
     BOOST_ROOT1: 'C:\Libraries\boost_1_60_0'
   matrix:
     - msvc: '"Visual Studio 10 2010"'
-      BOOST_ROOT: 'C:\Libraries\boost_1_57_0'
-      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_57_0\boost'
-      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_57_0\lib32-msvc-12.0'
-    - msvc: '"Visual Studio 10 2010"'
-      BOOST_ROOT: 'C:\Libraries\boost_1_58_0'
-      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_58_0\boost'
-      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_58_0\lib32-msvc-12.0'
+      BOOST_ROOT: 'C:\Libraries\boost_1_62_0'
+      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_62_0\boost'
+      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_62_0\lib32-msvc-10.0'
+      toolset: 'msvc-10.0'
     - msvc: '"Visual Studio 11 2012"'
-      BOOST_ROOT: 'C:\Libraries\boost_1_59_0'
-      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_59_0\boost'
-      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_59_0\lib32-msvc-11.0'
+      BOOST_ROOT: 'C:\Libraries\boost_1_65_1'
+      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_65_1\boost'
+      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_65_1\lib32-msvc-11.0'
+      toolset: 'msvc-11.0'
     - msvc: '"Visual Studio 12 2013"'
-      BOOST_ROOT: 'C:\Libraries\boost_1_58_0'
-      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_58_0\boost'
-      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_58_0\lib32-msvc-12.0'
-    - msvc: '"Visual Studio 14 2015"'
-      BOOST_ROOT: 'C:\Libraries\boost_1_67_0'
-      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_67_0\boost'
-      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_67_0\lib32-msvc-14.0'
+      BOOST_ROOT: 'C:\Libraries\boost_1_66_0'
+      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_66_0\boost'
+      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_66_0\lib32-msvc-12.0'
+      toolset: 'msvc-12.0'
 build_script:
   - md build
   - cd build
   - cmake -version
   - ls C:\Libraries
   - ls %BOOST_ROOT%
+  - .\bootstrap.bat
+  - .\b2.exe toolset=%toolset% variant=release threading=multi threadapi=win32 link=static runtime-link=shared link=static --prefix=C:\Libraries\boost_1_67_0 address-model=32 architecture=x86 install -j8 --with-chrono --with-context --with-system --with-timer
   - ls %BOOST_LIBRARYDIR%
-
+  

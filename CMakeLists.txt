@@ -12,9 +12,14 @@ message("BOOST_LIBRARYDIR=${BOOST_LIBRARYDIR}")
 FIND_PACKAGE (Boost REQUIRED)
 message("Boost_INCLUDE_DIRS = ${Boost_INCLUDE_DIRS}")
 message("Boost_LIBRARIES = ${Boost_LIBRARIES}")
-FIND_PACKAGE (Boost 1.62.0 COMPONENTS chrono context system timer)
+message("Boost_LIBRARY_DIRS = ${Boost_LIBRARY_DIRS}")
+if (NOT DEFINED Boost_INCLUDE_DIRS OR NOT DEFINED Boost_LIBRARIES)
+    FIND_PACKAGE (Boost 1.62.0 REQUIRED COMPONENTS chrono context system timer)
+endif()
+
 message("Boost_INCLUDE_DIRS2 = ${Boost_INCLUDE_DIRS}")
 message("Boost_LIBRARIES2 = ${Boost_LIBRARIES}")
+message("Boost_LIBRARY_DIRS = ${Boost_LIBRARY_DIRS}")
 
 # find_package(OpenSSL REQUIRED)
 

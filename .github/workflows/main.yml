@@ -18,6 +18,7 @@ on:
       - 'ChangeLog*'
       - 'whatsnew*'
       - 'LICENSE'
+      - 'appveyor.yml'
     tags:
     - '*'
 

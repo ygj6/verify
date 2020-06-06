@@ -6,36 +6,24 @@ branches:
     - master
 
 image:
-  - Visual Studio 2015
+  - Visual Studio 2013
 environment:
   global:
     BOOST_ROOT1: 'C:\Libraries\boost_1_60_0'
-    BOOST_INCLUDEDIR1: 'C:\Libraries\boost_1_60_0\boost'
-    BOOST_LIBRARYDIR1: 'C:\Libraries\boost_1_60_0\lib32-msvc-12.0'
-    Boost_LIBRARIES: 'optimized;C:/Libraries/boost_1_67_0/lib32-msvc-14.0/boost_chrono-vc140-mt-x32-1_67.lib;debug;C:/Libraries/boost_1_67_0/lib32-msvc-14.0/boost_chrono-vc140-mt-gd-x32-1_67.lib;optimized;C:/Libraries/boost_1_67_0/lib32-msvc-14.0/boost_context-vc140-mt-x32-1_67.lib;debug;C:/Libraries/boost_1_67_0/lib32-msvc-14.0/boost_context-vc140-mt-gd-x32-1_67.lib;optimized;C:/Libraries/boost_1_67_0/lib32-msvc-14.0/boost_system-vc140-mt-x32-1_67.lib;debug;C:/Libraries/boost_1_67_0/lib32-msvc-14.0/boost_system-vc140-mt-gd-x32-1_67.lib;optimized;C:/Libraries/boost_1_67_0/lib32-msvc-14.0/boost_timer-vc140-mt-x32-1_67.lib;debug;C:/Libraries/boost_1_67_0/lib32-msvc-14.0/boost_timer-vc140-mt-gd-x32-1_67.lib;optimized;C:/Libraries/boost_1_67_0/lib32-msvc-14.0/boost_thread-vc140-mt-x32-1_67.lib;debug;C:/Libraries/boost_1_67_0/lib32-msvc-14.0/boost_thread-vc140-mt-gd-x32-1_67.lib;optimized;C:/Libraries/boost_1_67_0/lib32-msvc-14.0/boost_date_time-vc140-mt-x32-1_67.lib;debug;C:/Libraries/boost_1_67_0/lib32-msvc-14.0/boost_date_time-vc140-mt-gd-x32-1_67.lib;optimized;C:/Libraries/boost_1_67_0/lib32-msvc-14.0/boost_atomic-vc140-mt-x32-1_67.lib;debug;C:/Libraries/boost_1_67_0/lib32-msvc-14.0/boost_atomic-vc140-mt-gd-x32-1_67.lib'
   matrix:
-    - cpp11: Visual Studio 2013
-      msvc: '"Visual Studio 10 2010"'
-      BOOST_ROOT: 'C:\Libraries\boost_1_67_0'
-      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_67_0\boost'
-      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_67_0\lib32-msvc-14.0'
-    - cpp11: -DMSGPACK_CXX11=OFF
-      msvc: '"Visual Studio 11 2012"'
-      BOOST_ROOT: 'C:\Libraries\boost_1_67_0'
-      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_67_0\boost'
-      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_67_0\lib32-msvc-14.0'
-    - cpp11: -DMSGPACK_CXX11=OFF
-      msvc: '"Visual Studio 12 2013"'
-      BOOST_ROOT: 'C:\Libraries\boost_1_67_0'
-      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_67_0\boost'
-      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_67_0\lib32-msvc-14.0'
-    - cpp11: -DMSGPACK_CXX11=ON
-      msvc: '"Visual Studio 14 2015"'
-      BOOST_ROOT: 'C:\Libraries\boost_1_67_0'
-      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_67_0\boost'
-      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_67_0\lib32-msvc-14.0'
-    - cpp11: -DMSGPACK_CXX11=OFF
-      msvc: '"Visual Studio 14 2015"'
+    - msvc: '"Visual Studio 10 2010"'
+      BOOST_ROOT: 'C:\Libraries\boost_1_60_0'
+      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_60_0\boost'
+      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_60_0\lib32-msvc-10.0'
+    - msvc: '"Visual Studio 11 2012"'
+      BOOST_ROOT: 'C:\Libraries\boost_1_62_0'
+      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_62_0\boost'
+      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_62_0\lib32-msvc-11.0'
+    - msvc: '"Visual Studio 12 2013"'
+      BOOST_ROOT: 'C:\Libraries\boost_1_63_0'
+      BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_63_0\boost'
+      BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_63_0\lib32-msvc-12.0'
+    - msvc: '"Visual Studio 14 2015"'
       BOOST_ROOT: 'C:\Libraries\boost_1_67_0'
       BOOST_INCLUDEDIR: 'C:\Libraries\boost_1_67_0\boost'
       BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_67_0\lib32-msvc-14.0'
@@ -44,6 +32,6 @@ build_script:
   - cd build
   - cmake -version
   - ls C:\Libraries
-  - ls C:\Libraries\boost_1_67_0
-  - ls C:\Libraries\boost_1_67_0\lib32-msvc-14.0
-  - cmake -G %msvc% -DBoost_LIBRARIES1="%Boost_LIBRARIES%" -DCMAKE_CXX_FLAGS='"/D_VARIADIC_MAX=10 /EHsc"' -DBOOST_ROOT="%BOOST_ROOT%" -DBOOST_INCLUDEDIR="%BOOST_INCLUDEDIR%" -DBOOST_LIBRARYDIR="%BOOST_LIBRARYDIR%" -DBoost_LIBRARY_DIRS="%BOOST_LIBRARYDIR%" ..
+  - ls %BOOST_ROOT%
+  - ls %BOOST_LIBRARYDIR%
+

@@ -34,6 +34,7 @@ build_script:
       echo msvc=$msvc
       echo envmsvc=$env:msvc
       echo %BOOST_ROOT%
+      echo av:$env:APPVEYOR_BUILD_FOLDER
       if ($env:msvc -eq '"Visual Studio 12 2013"') {
         echo "yesssssss"
       }

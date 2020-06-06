@@ -12,7 +12,7 @@ message("BOOST_LIBRARYDIR=${BOOST_LIBRARYDIR}")
 FIND_PACKAGE (Boost REQUIRED)
 message("Boost_INCLUDE_DIRS = ${Boost_INCLUDE_DIRS}")
 message("Boost_LIBRARIES = ${Boost_LIBRARIES}")
-FIND_PACKAGE (Boost REQUIRED COMPONENTS chrono context system timer)
+FIND_PACKAGE (Boost 1.62.0 COMPONENTS chrono context system timer)
 message("Boost_INCLUDE_DIRS2 = ${Boost_INCLUDE_DIRS}")
 message("Boost_LIBRARIES2 = ${Boost_LIBRARIES}")
 

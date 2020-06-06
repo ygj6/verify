@@ -27,9 +27,10 @@ environment:
       BOOST_LIBRARYDIR: 'C:\Libraries\boost_1_66_0\lib32-msvc-12.0'
       toolset: 'msvc-12.0'
 build_script:
-  - md build
-  - cd build
-  - cmake -version
-  - if (%msvc% -eq "Visual Studio 12 2013") { echo "yesssssss" } else { echo "noooooooo" }
+  - ps: |
+      md build
+      cd build
+      cmake -version
+      if (%msvc% -eq "Visual Studio 12 2013") { echo "yesssssss" } else { echo "noooooooo" }
  
   

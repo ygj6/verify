@@ -31,12 +31,5 @@ build_script:
   - cd build
   - cmake -version
   - if (%msvc% -eq "Visual Studio 12 2013") { echo "yesssssss" } else { echo "noooooooo" }
-  - ls C:\Libraries
-  - ls %BOOST_ROOT%
-  - cd %BOOST_ROOT%
-  - echo toolset=%toolset%
-  - .\bootstrap.bat
-  - .\b2.exe toolset=%toolset% variant=release threading=multi threadapi=win32 link=static runtime-link=shared link=static --prefix=%BOOST_ROOT% address-model=32 architecture=x86 install -j8 --with-chrono --with-context --with-system --with-timer
-  - ls %BOOST_ROOT%
-  - ls %BOOST_LIBRARYDIR%
+ 
   

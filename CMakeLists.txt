@@ -5,6 +5,10 @@ project(verify)
 
 set(CMAKE_VERBOSE_MAKEFILE 1)
 
+message("BOOST_ROOT=${BOOST_ROOT}")
+message("BOOST_INCLUDEDIR=${BOOST_INCLUDEDIR}")
+message("BOOST_LIBRARYDIR=${BOOST_LIBRARYDIR}")
+
 FIND_PACKAGE (Boost REQUIRED)
 message("Boost_INCLUDE_DIRS = ${Boost_INCLUDE_DIRS}")
 message("Boost_LIBRARIES = ${Boost_LIBRARIES}")

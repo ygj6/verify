@@ -33,6 +33,7 @@ build_script:
       cmake -version
       echo msvc=$msvc
       echo envmsvc=$env:msvc
+      echo %BOOST_ROOT%
       if ($env:msvc -eq '"Visual Studio 12 2013"') {
         echo "yesssssss"
       }

@@ -33,8 +33,10 @@ while getopts "b:t:" c; do
   esac
 done
 
-wget https://dl.bintray.com/boostorg/release/1.71.0/source/boost_1_71_0.tar.bz2
-tar xf boost_1_71_0.tar.bz2
+# wget https://dl.bintray.com/boostorg/release/1.71.0/source/boost_1_71_0.tar.bz2
+wget https://github.com/boostorg/boost/archive/boost-1.71.0.tar.gz
+# tar xf boost_1_71_0.tar.bz2
+tar xzf boost-boost-1.71.0.tar.gz
 cd boost_1_71_0
 ./bootstrap.sh
 

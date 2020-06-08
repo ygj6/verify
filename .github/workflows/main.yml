@@ -27,14 +27,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-2016]
+        os: [ubuntu-latest]
 
     steps:
       - uses: actions/checkout@v1
       - name: build
-        shell: powershell
         run: |
-          echo BOOST_ROOT_1_69_0=$env:BOOST_ROOT_1_69_0
-          echo BOOST_ROOT_1_72_0=$env:BOOST_ROOT_1_72_0
-          cmake -A x64 -DBOOST_ROOT="$env:BOOST_ROOT_1_72_0"  .
-          if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
+          ./boost.sh -b both -t gcc
